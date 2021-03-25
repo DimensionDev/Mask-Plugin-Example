@@ -1,1 +1,38 @@
-{}
+{
+    "manifest_version": 1,
+    // this will look for "name" in the current i18n language
+    // If you don't want to do i18n, "name": "My plugin name" is also OK
+    "name": "Test plugin",
+    "description": "This is a test plugin",
+    "publisher": "Jack Works",
+    // Sign this manifest file so people will trust me (if my GPG key is famous)!
+    // If you want to sign other resources, add it to the integrity list below
+    // DISCUSS: I think it's better to have users to sign by their Mask account, aka ECC key pair.
+    // "code_sign": "./sign.gpg",
+    // "integrity": {
+    //   // I can provide hash to enforce security
+    //   // Opt-in feature.
+    //   "./preview/Card_1.json": "sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
+    //   // Now with sign.gpg and this hash, we can make sure ./preview/Card_1.json is trustable
+    // },
+    // "i18n": {
+    //   "en": "./en.json",
+    //   "zh": "./zh.json",
+    //   "ja": "./ja.json"
+    // },
+    "metadata": {
+      // In Mask it will be plugin:example.com/my-plugin:kind:1
+      "v1": {
+        // "schema": "./kind1-v1.schema.json",
+        "preview": "./v1.html"
+      }
+    }
+    // "contribution": {
+    //   // This allows to add a new badge in
+    //   // the composition dialog once user added the plugin
+    //   "composition": {
+    //     "icon": "./badge.svg",
+    //     "target": "./compose.html"
+    //   }
+    // }
+  }
