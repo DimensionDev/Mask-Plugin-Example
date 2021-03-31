@@ -2,7 +2,7 @@
     "manifest_version": 1,
     // this will look for "name" in the current i18n language
     // If you don't want to do i18n, "name": "My plugin name" is also OK
-    "name": "Test plugin",
+    "name": "Test plugin~~~~~",
     "description": "This is a test plugin",
     "publisher": "Jack Works",
     // Sign this manifest file so people will trust me (if my GPG key is famous)!
