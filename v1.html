@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-    <template>
->mask-card
-    %caption = From localhost!
-    %title = This is preview of id {{payload.data.0}} and {{payload.data.1}}
-    %button = Details
-    . Hey a payload!
-    </template>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <template>
+            <mask-card
+                caption="From localhost!"
+                title="This is preview of id {{payload.data.0}} and {{payload.data.1}}"
+                button="Details"
+                href="http://localhost:4242/entry?id={{payload.data.0}}"
+            >
+                Child content
+            </mask-card>
+        </template>
+    </body>
 </html>
