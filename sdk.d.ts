@@ -1,5 +1,6 @@
-interface MaskSDK {
+export interface MaskSDK {
     version: number
+    echo<T>(x: T): Promise<T>
 }
-const def: Promise<MaskSDK>
+declare const def: Promise<MaskSDK>
 export default def

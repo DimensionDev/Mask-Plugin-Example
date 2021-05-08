@@ -11,12 +11,14 @@ const channel = {
     },
 }
 const server = AsyncCall({}, { channel, serializer: JSONSerialization() })
+/** @returns {Promise<import('./sdk.d').MaskSDK>} */
 async function init() {
     await Promise.race([untilStart(), timeout(500)])
     const version = await server.version()
     if (version !== 1) throw new Error(`Unknown version of Mask SDK ${version}`)
     return {
         version,
+        echo: server.echo,
     }
 }
 export default init()
