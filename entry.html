@@ -7,8 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-<script>
-    document.write(location.href)
-</script>
+    <script type="module">
+        import sdk from './sdk.js'
+        sdk.then(mask => {
+            console.log('Mask SDK', mask)
+            globalThis.Mask = mask
+        })
+    </script>
 </body>
 </html>
