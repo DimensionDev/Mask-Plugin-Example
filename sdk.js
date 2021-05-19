@@ -19,6 +19,7 @@ async function init() {
     return {
         version,
         echo: server.echo,
+        getProfiles: server.getProfile,
     }
 }
 export default init()

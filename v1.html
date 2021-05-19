@@ -7,10 +7,13 @@
         <template>
             <mask-card
                 caption="From localhost!"
-                title="This is preview of id {{payload.data.0}} and {{payload.data.1}}"
                 button="Details"
                 href="http://localhost:4242/entry?id={{payload.data.0}}"
             >
+                <i18n-translate slot="title" key="title">
+                    This is preview of id <span slot="id0">{{payload.data.0}}</span> and
+                    <span slot="id1">{{payload.data.1}}</span>
+                </i18n-translate>
                 Child content
             </mask-card>
         </template>

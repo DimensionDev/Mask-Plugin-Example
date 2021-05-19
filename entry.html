@@ -7,12 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <script type="module">
-        import sdk from './sdk.js'
-        sdk.then(mask => {
-            console.log('Mask SDK', mask)
-            globalThis.Mask = mask
-        })
-    </script>
+    <button>Get list of profiles</button>
+    <ul></ul>
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
