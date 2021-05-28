@@ -1,16 +1,17 @@
-import { AsyncCall, JSONSerialization } from 'https://cdn.jsdelivr.net/npm/async-call-rpc@5.0.0/out/base.min.mjs'
+import { AsyncCall, JSONSerialization } from 'https://cdn.jsdelivr.net/npm/async-call-rpc@5.1.0/out/base.min.mjs'
 
 const channel = {
     on(listener) {
-        const l = (x) => x instanceof CustomEvent && listener(x.detail)
+        const l = (x) => x instanceof CustomEvent && [listener(x.detail), console.log(x.detail)]
         document.addEventListener('mask-out', l)
         return () => document.removeEventListener('mask-out', l)
     },
     send(message) {
+        console.log(message)
         document.dispatchEvent(new CustomEvent('mask-in', { detail: message }))
     },
 }
-const server = AsyncCall({}, { channel, serializer: JSONSerialization() })
+const server = AsyncCall({}, { channel, serializer: JSONSerialization(), })
 /** @returns {Promise<import('./sdk.d').MaskSDK>} */
 async function init() {
     await untilStart()
@@ -19,6 +20,7 @@ async function init() {
     await server.__assertLocalContext()
     return {
         version,
+        setPayload: server.setPayload,
         getProfiles: server.getProfile,
         isContextConnected: () =>
             server.__validateRemoteContext().then(
