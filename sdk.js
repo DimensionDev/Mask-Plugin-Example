@@ -13,19 +13,22 @@ const channel = {
 const server = AsyncCall({}, { channel, serializer: JSONSerialization() })
 /** @returns {Promise<import('./sdk.d').MaskSDK>} */
 async function init() {
-    await Promise.race([untilStart(), timeout(2000)])
+    await untilStart()
     const version = await server.version()
     if (version !== 1) throw new Error(`Unknown version of Mask SDK ${version}`)
+    await server.__assertLocalContext()
     return {
         version,
-        echo: server.echo,
         getProfiles: server.getProfile,
+        isContextConnected: () =>
+            server.__validateRemoteContext().then(
+                () => true,
+                () => false
+            ),
     }
 }
 export default init()
 function untilStart() {
+    if (document.querySelector('html').getAttribute('data-mask-sdk-ready')) return Promise.resolve()
     return new Promise((r) => document.addEventListener('mask-start', r, { once: true }))
-}
-function timeout(ms) {
-    return new Promise((_, r) => setTimeout(() => r('Timeout to init Mask SDK'), ms))
 }
