@@ -1,6 +1,6 @@
 import sdk from './sdk.js'
 
-log('少女祈祷中......')
+log('Loading SDK......')
 
 const payload = new URL(location.href).searchParams.get('data')
 if (payload) log(`Payload: ${payload}`)
