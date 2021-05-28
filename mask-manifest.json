@@ -21,18 +21,17 @@
     //   "ja": "./ja.json"
     // },
     "metadata": {
-      // In Mask it will be plugin:example.com/my-plugin:kind:1
-      "v1": {
-        // "schema": "./kind1-v1.schema.json",
-        "preview": "./v1.html"
-      }
+        // In Mask it will be plugin:example.com/my-plugin:kind:1
+        "v1": {
+            // "schema": "./kind1-v1.schema.json",
+            "preview": "./v1.html"
+        }
+    },
+    "contribution": {
+        // This allows to add a new badge in the composition dialog once user added the plugin
+        "composition": {
+            "icon": "./badge.svg",
+            "href": "./compose"
+        }
     }
-    // "contribution": {
-    //   // This allows to add a new badge in
-    //   // the composition dialog once user added the plugin
-    //   "composition": {
-    //     "icon": "./badge.svg",
-    //     "target": "./compose.html"
-    //   }
-    // }
-  }
+}
