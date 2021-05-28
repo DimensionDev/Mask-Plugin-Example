@@ -22,9 +22,9 @@
     // },
     "metadata": {
         // In Mask it will be plugin:example.com/my-plugin:kind:1
-        "v1": {
+        "v2": {
             // "schema": "./kind1-v1.schema.json",
-            "preview": "./v1.html"
+            "preview": "./v2.html"
         }
     },
     "contribution": {

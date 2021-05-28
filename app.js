@@ -1,6 +1,10 @@
 import sdk from './sdk.js'
 
-log('Waiting Mask SDK to be ready...')
+log('少女祈祷中......')
+
+const payload = new URL(location.href).searchParams.get('data')
+if (payload) log(`Payload: ${payload}`)
+
 sdk.then(
     async (sdk) => {
         log(`Mask SDK v${sdk.version} ready.`)
@@ -12,14 +16,23 @@ sdk.then(
                 (e) => log(`Set payload failed`, e)
             )
         })
+        document.querySelector('#req').addEventListener('click', async () => {
+            log('Request profiles...')
+            try {
+                const data = await sdk.getProfiles()
+                log('Profiles: ' + data.join())
+            } catch (e) {
+                log('Request profiles failed', e)
+            }
+        })
     },
-    (err) => log(`Mask SDK init failed ${err}`)
+    (err) => log(`Mask SDK init failed`, e)
 )
 
 function log(x, e) {
     const li = document.createElement('li')
-   e&& console.log(e);
-    li.innerHTML = `[${new Date().toLocaleTimeString()}]<br /> ${x} ${e||''}`
+    e && console.log(e)
+    li.innerHTML = `[${new Date().toLocaleTimeString()}] ${x} ${e || ''}`
     const ul = document.querySelector('ul')
     ul.insertBefore(li, ul.children[0])
 }

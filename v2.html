@@ -8,14 +8,13 @@
             <mask-card
                 caption="From localhost!"
                 button="Details"
-                href="http://localhost:4242/entry?id={{payload.data.0}}"
+                href="./compose?data={{payload.data}}"
             >
                 <i18n-translate slot="title" key="title">
-                    This is preview of id <span slot="id0">{{payload.data.0}}</span> and
-                    <span slot="id1">{{payload.data.1}}</span>
+                    Hello from 3rd party plugin. This post contains the following message:
                 </i18n-translate>
                 <br />
-                Child content
+                {{payload.data}}
             </mask-card>
         </template>
     </body>
