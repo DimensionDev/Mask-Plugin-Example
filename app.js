@@ -1,7 +1,6 @@
 /// <reference path="../Mask/packages/mask-sdk/dist/public-api.d.ts" />
 // @ts-check
 
-log('Loading SDK......')
 
 const payload = new URL(location.href).searchParams.get('data')
 if (payload) log(`Payload: ${payload}`)
@@ -10,6 +9,7 @@ function sleep() {
     return new Promise((resolve) => setTimeout(resolve, 200))
 }
 async function main() {
+    log('Loading SDK......')
     while (!window.Mask) await sleep()
 
     log(`Mask SDK v${Mask.sdkVersion} ready.`)
@@ -34,6 +34,8 @@ async function main() {
         }
     })
 }
+
+main()
 
 function log(x, e) {
     const li = document.createElement('li')

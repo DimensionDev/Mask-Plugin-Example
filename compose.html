@@ -5,10 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <style>
+            li {
+                word-break: break-all;
+            }
+            textarea {
+                width: max-content;
+            }
+        </style>
     </head>
     <body>
-        <textarea id="input" style="width: max-content;"></textarea>
-        <button id="add">Add payload</button>
+        <textarea id="input"></textarea>
+        <p />
+        <button id="add">Append payload back to SNS</button>
+        <p />
         <button id="sign">Sign this message</button>
         <ul></ul>
         <script type="module" src="./app.js"></script>
