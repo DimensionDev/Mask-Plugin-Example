@@ -21,9 +21,9 @@
     //   "ja": "./ja.json"
     // },
     "metadata": {
-        // In Mask it will be plugin:example.com/my-plugin:kind:1
+        // In Mask it will be plugin:example.com/my-plugin:kind:v2
         "v2": {
-            // "schema": "./kind1-v1.schema.json",
+            // "schema": "./kind1-v2.schema.json",
             "preview": "./v2.html"
         }
     },

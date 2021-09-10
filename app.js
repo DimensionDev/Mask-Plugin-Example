@@ -1,33 +1,39 @@
-import sdk from './sdk.js'
+/// <reference path="../Mask/packages/mask-sdk/dist/public-api.d.ts" />
+// @ts-check
 
 log('Loading SDK......')
 
 const payload = new URL(location.href).searchParams.get('data')
 if (payload) log(`Payload: ${payload}`)
 
-sdk.then(
-    async (sdk) => {
-        log(`Mask SDK v${sdk.version} ready.`)
+function sleep() {
+    return new Promise((resolve) => setTimeout(resolve, 200))
+}
+async function main() {
+    while (!window.Mask) await sleep()
 
-        document.querySelector('#add').addEventListener('click', () => {
-            const val = document.querySelector('#input').value
-            sdk.setPayload({ v2: { data: val } }, { additionText: 'Hi extra text from external plugin' }).then(
-                () => log(`Set payload`),
-                (e) => log(`Set payload failed`, e)
-            )
-        })
-        document.querySelector('#req').addEventListener('click', async () => {
-            log('Request profiles...')
-            try {
-                const data = await sdk.getProfiles()
-                log('Profiles: ' + data.join())
-            } catch (e) {
-                log('Request profiles failed', e)
-            }
-        })
-    },
-    (err) => log(`Mask SDK init failed`, e)
-)
+    log(`Mask SDK v${Mask.sdkVersion} ready.`)
+
+    document.querySelector('#add').addEventListener('click', () => {
+        const val = document.querySelector('#input').value
+
+        const meta = new Map()
+        meta.set('v2', { data: val })
+        Mask.socialNetwork.appendComposition('Hi extra text from external plugin', meta).then(
+            () => log(`Set payload`),
+            (e) => log(`Set payload failed`, e)
+        )
+    })
+    document.querySelector('#sign').addEventListener('click', async () => {
+        log('Request profiles...')
+        try {
+            const data = await Mask.persona.__experimental__sign__(document.querySelector('#input').value, 'web3')
+            log('Sign result: ' + data)
+        } catch (e) {
+            log('Request profiles failed', e)
+        }
+    })
+}
 
 function log(x, e) {
     const li = document.createElement('li')
