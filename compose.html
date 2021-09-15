@@ -5,22 +5,125 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+            integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+            crossorigin="anonymous"
+        ></script>
         <style>
-            li {
+            .content {
                 word-break: break-all;
             }
             textarea {
                 width: max-content;
             }
+            #log {
+                flex-direction: column-reverse;
+                max-height: calc(100vh - 12px);
+                overflow-y: auto;
+            }
+            #doc {
+                max-height: calc(100vh - 12px);
+                overflow-y: auto;
+            }
         </style>
     </head>
     <body>
-        <textarea id="input"></textarea>
-        <p />
-        <button id="add">Append payload back to SNS</button>
-        <p />
-        <button id="sign">Sign this message</button>
-        <ul></ul>
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-xs-12 col-lg-3 gy-2">
+                    <label for="input" class="form-label">Playground</label>
+                    <textarea
+                        class="form-control"
+                        placeholder="Write anything here, and click the button bellow."
+                        id="input"
+                        rows="4"
+                    ></textarea>
+
+                    <div class="col gy-8">
+                        <div class="row p-2">
+                            <button type="button" class="btn btn-primary" id="append">Append message as Payload</button>
+                        </div>
+                        <div class="row p-2">
+                            <button type="button" class="btn btn-primary" id="sign">Sign</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-4 gy-2">
+                    <div class="list-group" id="log">
+                        <template>
+                            <a class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                                <img
+                                    src="https://dimensiondev.github.io/Maskbook-VI/assets/Logo/MB--Logo--Geo--ForceCircle--Blue.svg"
+                                    alt="twbs"
+                                    width="32"
+                                    height="32"
+                                    class="rounded-circle flex-shrink-0"
+                                />
+                                <div class="d-flex gap-2 w-100 justify-content-between">
+                                    <div>
+                                        <p class="mb-0 content">Content here</p>
+                                        <small class="opacity-50 text-nowrap time">Time here</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </template>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-5" id="doc">
+                    <h3>Hello world</h3>
+                    <p class="lead">Welcome to my personal Mask external plugin!</p>
+                    <p>Mask Network SDK is available with <code>window.Mask</code></p>
+                    <div class="alert alert-warning" role="alert">
+                        Any API described below is experimental, it will change in the future.
+                    </div>
+
+                    <h4><code>Mask.persona</code></h4>
+                    <p>Interact with Personas in Mask Network.</p>
+
+                    <h5><code>Mask.persona.__experimental__sign__(message: string, style: "web3")</code></h5>
+                    <p>Sign message with a persona.</p>
+
+                    <h4><code>Mask.socialNetwork</code></h4>
+                    <p>Interact with the Social Network Service that opens this page.</p>
+
+                    <h5><code>readonly Mask.socialNetwork.connected: boolean</code></h5>
+                    <p>If this page is connected to some SNS page.</p>
+
+                    <h5><code>readonly Mask.socialNetwork.metadata: unknown</code></h5>
+                    <p>Payload that this plugin previously appended to a Mask Network post.</p>
+
+                    <h5>
+                        <code
+                            >Mask.socialNetwork.appendComposition(message: string, metadata?: Map&lt;string,
+                            unknown&gt;)</code
+                        >
+                    </h5>
+                    <p>
+                        Append message to the connected SNS. If <code>Mask.socialNetwork.connected</code> is
+                        <code>false</code>, call this function will return an error.
+                    </p>
+                    <p>
+                        The message can be read back again when it is opened in SNS with
+                        <code>Mask.socialNetwork.metadata</code>.
+                    </p>
+
+                    <h4><code>Mask.ethereum</code></h4>
+                    <div class="alert alert-dark" role="alert">To be done.</div>
+                    <p>Interact with the Ethereum wallet that Mask Network using.</p>
+
+                    <h4><code>Mask.credentials</code></h4>
+                    <div class="alert alert-dark" role="alert">To be done.</div>
+                    <p>Login or register to your web site with Mask Network.</p>
+                </div>
+            </div>
+        </div>
         <script type="module" src="./app.js"></script>
     </body>
 </html>
