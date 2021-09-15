@@ -1,15 +1,16 @@
 /// <reference path="../Mask/packages/mask-sdk/dist/public-api.d.ts" />
 // @ts-check
 
-const payload = new URL(location.href).searchParams.get('data')
-if (payload) log(`Payload: ${payload}`)
-
 async function main() {
     log('Waiting for Mask SDK......')
     log(`Please full screen the window to reveal a much convenient UI.`)
     while (!window.Mask) await sleep()
 
     log(`Mask SDK v${Mask.sdkVersion} ready.`)
+
+    if (Mask.socialNetwork.metadata) {
+        log(`Hey please checkout Mask.socialNetwork.metadata, here is some data!`)
+    }
 
     document.querySelector('#append').addEventListener('click', () => {
         const val = document.querySelector('#input').value

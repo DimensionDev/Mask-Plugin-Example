@@ -6,15 +6,13 @@
     <body>
         <template>
             <mask-card
-                caption="From localhost!"
-                button="Details"
+                caption="Greeting from the Hello world plugin."
+                button="Let's go"
                 href="./compose?data={{payload.data}}"
             >
-                <i18n-translate slot="title" key="title">
-                    Hello from 3rd party plugin. This post contains the following message:
-                </i18n-translate>
+                This post contains the following metadata of my Hello World plugin:
                 <br />
-                {{payload.data}}
+                <blockquote>{{payload.data}}</blockquote>
             </mask-card>
         </template>
     </body>
